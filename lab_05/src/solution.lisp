@@ -45,9 +45,9 @@
     (T 'difference)))
 ;; IF variant
 (defun how-alike-if (x y)
-    (if (or (= x y) (equal x y)) 'the_same (
-        if (and (oddp x) (oddp y)) 'both_odd (
-            if (and (evenp x) (evenp y)) 'both_even 'difference))))
+    (if (if (= x y) (equal x y)) 'the_same (
+        if (if (oddp x) (oddp y)) 'both_odd (
+            if (if (evenp x) (evenp y)) 'both_even 'difference))))
 ;; AND/OR variant
 (defun how-alike-andor (x y)
     (or (and (or (= x y) (equal x y)) 'the_same)
