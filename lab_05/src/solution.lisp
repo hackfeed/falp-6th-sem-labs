@@ -8,7 +8,7 @@
     (if (> a b) (list a b) (list b a)))
 
 (defun is-between (a b c)
-    (if (and (> a b) (< a c)) T Nil))
+    (if (< b a) (> c a) (< c a)))
 
 (and 'fee 'fie 'foe)            ; FOE
 (or 'fee 'fie 'foe)             ; FEE
@@ -28,14 +28,14 @@
 
 ;; IF variant
 (defun is-between-if (a b c)
-    (if (and (> a b) (< a c)) T Nil))
+    (if (< b a) (> c a) (< c a)))
 ;; COND variant
 (defun is-between-cond (a b c)
-    (cond ((and (> a b) (< a c)) T)
-    (T Nil)))
+    (cond ((< b a) (> c a))
+        (T (< c a))))
 ;; AND/OR variant
 (defun is-between-andor (a b c)
-    (and (> a b) (< a c)))
+    (or (and (< b a) (> c a)) (and (< c a) (> b a))))
 
 ;; COND variant
 (defun how-alike-cond (x y)
