@@ -1,0 +1,40 @@
+(setf lst1 '(a b))
+(setf lst2 '(c d))
+(cons lst1 lst2)    ; ((A B) C D)
+(list lst1 lst2)    ; ((A B) (C D))
+(append lst1 lst2)  ; (A B C D)
+
+(reverse ())            ; NIL
+(last ())               ; NIL
+(reverse '(a))          ; (A)
+(last '(a))             ; (A)
+(reverse '((a b c)))    ; ((A B C))
+(last '((a b c)))       ; ((A B C))
+
+(defun make-last-rev (lst)
+    (car (reverse lst)))
+(defun make-last-rec (lst)
+    (if (null (cdr lst)) (car lst) (make-last-rec (cdr lst))))
+
+(defun make-notail-rev (lst)
+    (nreverse (cdr (reverse lst))))
+(defun make-notail-rec (lst)
+    (if (null (cdr lst)) Nil (cons (car lst) (make-notail-rec (cdr lst)))))
+
+(defun roll-dices (edges)
+    (let ((sum (+ (random edges) (random edges) 2)))
+    (and 
+        (print (list 'Points '= sum))
+        (if (or (= sum 2) (= sum 12)) 
+            (and (print '(Reroll chance)) (setq sum (roll-dices edges))) 
+            sum)
+        sum)))
+(defun is-early-win (points)
+    (or (= points 7) (= points 11)))
+(defun make-result (fpoints spoints) 
+    (cond ((or (is-early-win fpoints) (> fpoints spoints)) '(First player won))
+        ((or (is-early-win spoints) (> spoints fpoints)) '(Second player won))
+        (T 'Draw)))
+(defun make-game ()
+    (print (make-result (and (print '(Player 1 rolls)) (roll-dices 6))
+                        (and (print '(Player 2 rolls)) (roll-dices 6)))))
