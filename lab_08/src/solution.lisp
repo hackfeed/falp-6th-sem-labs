@@ -5,12 +5,30 @@
                             ((numberp el) (* el init))
                             (T el))) lst))
 
+(defun flatten (lst)
+    (cond ((null lst) Nil)
+    ((atom lst) (list lst))
+    (T (mapcan #'flatten lst))))
+(defun make-mult-lst-els-rec (lst init)
+    (flatten (cond ((null lst) Nil)
+        ((numberp lst) (* lst init))
+        ((symbolp lst) lst)
+        (T (cons (make-mult-lst-els-rec (car lst) init) (make-mult-lst-els-rec (cdr lst) init))))))
+
 (defun make-select-between (lst l r)
     (sort (reduce #'(lambda (acc el) (if (and (> el l) (< el r))
-                                    (append acc (cons el Nil))
+                                    (cons el acc)
                                     acc)) 
                                     lst :initial-value ()) 
     #'<))
+
+(defun make-map (mapper lst)
+    (mapcan #'(lambda (el) 
+        (cond ((listp el) (and (consp (make-map mapper el)) (list (make-map mapper el))))
+        (T (funcall mapper el))))
+    lst))
+(defun make-select-between-str (lst l r)
+    make-map #'(lambda (el) (and (numberp el) (< el r) (> el l) (list el)) lst))
 
 (mapcar 'bektop '(570-40-8))    ; The function COMMON-LISP-USER::BEKTOP is undefined.
 
