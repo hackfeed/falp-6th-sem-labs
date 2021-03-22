@@ -15,3 +15,11 @@
     ((symbolp (car lst)) (make-square-lsts (cdr lst)))
     ((numberp (car lst)) (cons (* (car lst) (car lst)) (make-square-lsts (cdr lst))))
     (T (nconc (make-square-lsts (car lst)) (make-square-lsts (cdr lst))))))
+
+(defun make-map (mapper lst)
+    (mapcan #'(lambda (el) 
+        (cond ((listp el) (and (consp (make-map mapper el)) (list (make-map mapper el))))
+        (T (funcall mapper el))))
+    lst))
+(defun make-square-lsts-str (lst)
+    (make-map #'(lambda (el) (if (numberp el) (list (* el el)))) lst))
