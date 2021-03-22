@@ -28,7 +28,7 @@
         (T (funcall mapper el))))
     lst))
 (defun make-select-between-str (lst l r)
-    make-map #'(lambda (el) (and (numberp el) (< el r) (> el l) (list el)) lst))
+    (make-map #'(lambda (el) (and (numberp el) (< el r) (> el l) (list el))) lst))
 
 (mapcar 'bektop '(570-40-8))    ; The function COMMON-LISP-USER::BEKTOP is undefined.
 
