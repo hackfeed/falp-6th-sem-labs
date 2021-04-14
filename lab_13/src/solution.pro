@@ -25,8 +25,8 @@ clauses
     hasIdentity("Dmitriy", "8 666 666 66 66", address("Hell", "Satan", 6, 66)).
     hasIdentity("Mikhail", "8 123 456 78 90", address("Jazz", "Ocean", 7, 7)).
 
+    hasCar("Sergey", "Velosiped", "Red", 40).
     hasCar("Dmitriy", "Nissan", "Beige", 1000000).
-    hasCar("Dmitriy", "Velosiped", "Red", 40).
     hasCar("Pavel", "Cadillac", "Black", 5000000).
     hasCar("Mikhail", "Carsharing", "white", 100).
 
@@ -39,13 +39,10 @@ clauses
     carByOwnerPhone(PhoneNumber, Surname, CarModel, CarPrice) :-
         hasIdentity(Surname, PhoneNumber, _), hasCar(Surname, CarModel, _, CarPrice).
 
-    carModelByOwnerPhone(PhoneNumber, CarModel) :-
-        carByOwnerPhone(PhoneNumber, _, CarModel, _).
-
     bankAndStreetBySurnameAndCity(Surname, City, Bank, Street) :-
         hasIdentity(Surname, _, address(City, Street, _, _)), hasDeposit(Surname, Bank, _).
 
 goal
     carByOwnerPhone("8 666 666 66 66", QSurname, QCarModel, QCarPrice).
-    % carModelByOwnerPhone("8 666 666 66 66", QSurname).
-    % bankAndStreetBySurnameAndCity("Sergey", "Tambov", QBank, QStreet).
+    % carByOwnerPhone("8 666 666 66 66", _, QCarModel, _).
+    % bankAndStreetBySurnameAndCity("Alexey", "Krasnogorsk", QBank, QStreet).
