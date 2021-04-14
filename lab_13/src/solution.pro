@@ -46,6 +46,6 @@ clauses
         hasIdentity(Surname, _, address(City, Street, _, _)), hasDeposit(Surname, Bank, _).
 
 goal
-    carByOwnerPhone("8 666 666 66 66", Surname, CarModel, CarPrice).
-    % carModelByOwnerPhone("8 666 666 66 66", Surname).
-    % bankAndStreetBySurnameAndCity("Sergey", "Tambov", Bank, Street).
+    carByOwnerPhone("8 666 666 66 66", QSurname, QCarModel, QCarPrice).
+    % carModelByOwnerPhone("8 666 666 66 66", QSurname).
+    % bankAndStreetBySurnameAndCity("Sergey", "Tambov", QBank, QStreet).

@@ -26,11 +26,11 @@ clauses
     studentsFromUniversity(University, Id, Name) :- idOfStudent(Id, Name), studyingIn(Id, University).
 
 goal
-    idOfStudent(Id, "Sergey").
-    % idOfStudent(0, Name).
+    idOfStudent(QId, "Sergey").
+    % idOfStudent(0, QName).
 
-    % studyingIn(Id, "BMSTU").
-    % studyingIn(0, University).
+    % studyingIn(QId, "BMSTU").
+    % studyingIn(0, QUniversity).
 
-    % studentsFromUniversity("BMSTU", Id, Name).
-    % studentsFromUniversity(University, Id, "Alexey").
+    % studentsFromUniversity("BMSTU", QId, QName).
+    % studentsFromUniversity(QUniversity, QId, "Alexey").
