@@ -13,16 +13,16 @@ predicates
   
 clauses
     lstlenInt([_|T], Res, Acc) :- Tmp = Acc + 1, !, lstlenInt(T, Res, Tmp).
-    lstlenInt([], Res, Acc) :- Res = Acc, !.
-    lstlen(Lst, Res) :- lstlenInt(Lst, Res, 0), !.
+    lstlenInt([], Acc, Acc).
+    lstlen(Lst, Res) :- lstlenInt(Lst, Res, 0).
 
     lstsumInt([H|T], Res, Acc) :- Tmp = Acc + H, !, lstsumInt(T, Res, Tmp).
-    lstsumInt([], Res, Acc) :- Res = Acc, !.
-    lstsum(Lst, Res) :- lstsumInt(Lst, Res, 0), !.
+    lstsumInt([], Acc, Acc).
+    lstsum(Lst, Res) :- lstsumInt(Lst, Res, 0).
 
     lstoddsumInt([_, H|T], Res, Acc) :- Tmp = Acc + H, !, lstoddsumInt(T, Res, Tmp).
-    lstoddsumInt([], Res, Acc) :- Res = Acc, !.
-    lstoddsum(Lst, Res) :- lstoddsumInt(Lst, Res, 0), !.
+    lstoddsumInt([], Acc, Acc).
+    lstoddsum(Lst, Res) :- lstoddsumInt(Lst, Res, 0).
 
 goal
     lstlen([1, 2], QRes).
