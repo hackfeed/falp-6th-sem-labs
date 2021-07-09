@@ -9,22 +9,22 @@ predicates
     formSet(lst, lst).
   
 clauses
-    formGreater([H|T], Num, [H|Res]) :- H > Num, formGreater(T, Num, Res), !.
+    formGreater([H|T], Num, [H|Res]) :- H > Num, !, formGreater(T, Num, Res).
     formGreater([_|T], Num, Res) :- formGreater(T, Num, Res).
     formGreater([], _, []).
 
     formOdd([_, H|T], [H|Res]) :- formOdd(T, Res).
     formOdd([], []).
 
-    delElAll([H|T], Num, [H|Res]) :- H <> Num, delElAll(T, Num, Res), !.
+    delElAll([H|T], Num, [H|Res]) :- H <> Num, !, delElAll(T, Num, Res).
     delElAll([_|T], Num, Res) :- delElAll(T, Num, Res).
     delElAll([], _, []).
 
-    delElOne([Num|T], Num, T) :- !.
+    delElOne([Num|T], Num, T).
     delElOne([H|T], Num, [H|Res]) :- delElOne(T, Num, Res).
     delElOne([], _, []).
 
-    formSet([H|T], [H|Res]) :- delElAll(T, H, Tmp), formSet(Tmp, Res), !.
+    formSet([H|T], [H|Res]) :- delElAll(T, H, Tmp), !, formSet(Tmp, Res).
     formSet([], []).
 
 goal
